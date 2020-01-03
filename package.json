@@ -1,0 +1,17 @@
+{
+  "name": "gandabot",
+  "version": "1.0.0",
+  "description": "I'm a cool robot :)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "whaiiz",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "ffmpeg-binaries": "^4.0.0",
+    "mysql": "^2.17.1",
+    "opusscript": "0.0.7"
+  }
+}

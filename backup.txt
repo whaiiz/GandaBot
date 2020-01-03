@@ -1,0 +1,18 @@
+const Discord = require('discord.js') // discord.js é um modulo de node.js que permite interagir com a Discord API facilmente.
+const bot = new Discord.Client(); // declarar o objeto bot
+
+const token = 'NjMzMzc4MDA2NjU5NzYwMTM4.XaTn6Q.yLdCezChwPAvJrO_EBILnUrBlbI'; // token do bot
+
+bot.on('ready', () => { // quando o bot ligar
+	console.log('Ganda BOT está online');
+})
+
+bot.on('message',msg=>{
+	if(msg.content.toLowerCase() === "olá" || msg.content.toLowerCase() === "ola" ){
+		msg.reply('OLA A PINTXA DE TUA MAE FDP , FODO TE TODO')
+	}
+    if(msg.content.toLowerCase() === "adeus"){
+		msg.reply('ADEUS A PINTXA DE TUA MAE FDP , FODO TE TODO')
+	}
+})
+
