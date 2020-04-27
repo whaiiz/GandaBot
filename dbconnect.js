@@ -1,9 +1,13 @@
-var mysql = require('mysql');
-const Discord = require('discord.js') 
+var mysql = require('mysql'); 
 
-mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "gandabotdb"
-});
+function dbConnect(){
+  
+  const con = mysql.createConnection({ // object to connect database
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "gandabotdb"
+  });
+
+  return con;
+}
