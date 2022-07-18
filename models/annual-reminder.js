@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
 
-const anualReminderSchema = new mongoose.Schema({
+const annualReminderSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true
     },
     day: {
-       type: Date,
+       type: Number,
        min : 1,
        max: 31,
        required: true 
@@ -23,6 +23,6 @@ const anualReminderSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-const AnualReminder = mongoose.model('anualReminder', anualReminderSchema);
+const AnnualReminder = mongoose.model('anualReminder', annualReminderSchema);
 
-export default AnualReminder;
+export default AnnualReminder;
