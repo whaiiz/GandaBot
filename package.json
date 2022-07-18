@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/whaiiz/GandaBot#readme",
   "dependencies": {
+    "cron": "^2.0.0",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.1",
     "mongoose": "^6.3.3"
