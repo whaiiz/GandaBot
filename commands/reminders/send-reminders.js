@@ -38,11 +38,11 @@ const sendRemindersMessage = (client, reminders) => {
 
 const sendMessage = async (client, title, content, discordId) => {
     let user = await client.users.fetch(discordId).catch(() => null);
-    let exampleEmbed = new MessageEmbed().setColor('#0099ff')
+    let response = new MessageEmbed().setColor('#0099ff')
         .setTitle(title)
         .setDescription(content)
     
-    await user.send({ embeds: [exampleEmbed] }).catch(() => {
+    await user.send({ embeds: [response] }).catch(() => {
         console.log(`Cannot send message to user with discord id ${discordId}!`);
     });
     

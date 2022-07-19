@@ -1,6 +1,7 @@
 import { Client, Intents } from "discord.js";
 import { sendReminders } from './commands/reminders/send-reminders.js';
 import { createReminder } from "./commands/reminders/create-reminder.js";
+import { help } from "./commands/help.js";
 import { createAnnualReminder } from "./commands/reminders/create-annual-reminder.js";
 import { startDatabaseConnection, stopDatabaseConnection } from './database-connection-manager.js';
 import dotenv from 'dotenv';
@@ -10,11 +11,11 @@ dotenv.config();
 
 const botToken = process.env.TOKEN;
 
-// Inserir documentação
 const commands = {
 	'create-reminder': createReminder,
 	'create-annual-reminder': createAnnualReminder,
 	'stop': stopDatabaseConnection,
+	'help': help,
 }
 
 const client = new Client({
@@ -28,9 +29,9 @@ const client = new Client({
 });
 
 client.on("messageCreate", async message => {
-	const { content } = message;
-	const contentSplited = content.split(' ');
-	const commandHandler = contentSplited[0] ? commands[contentSplited[0]] : false;
+	let { content } = message;
+	let contentSplited = content.split(' ');
+	let commandHandler = contentSplited[0] ? commands[contentSplited[0]] : false;
 	
 	if (!commandHandler || message.author.id === client.user.id) return;
 	
