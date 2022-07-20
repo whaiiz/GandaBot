@@ -47,7 +47,7 @@ client.on('ready', _ => {
 	console.log(`Ganda Bot is online`);
 });
 
-const scheduledMessage = new cron.CronJob('00 50 21 * * *', () => {
+const scheduledMessage = new cron.CronJob('00 00 12 * * *', () => {
 	sendReminders(client);
 });
   
