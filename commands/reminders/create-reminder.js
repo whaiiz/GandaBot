@@ -1,22 +1,34 @@
 import { handleCreateReminder } from '../../business-layer/reminders/create-reminder-bl.js' 
 import { convertDateStringToDateObject, isDateValid } from '../../utils/date-helper.js';
 
-const wrongFormatMessage = 'create-reminder format is: "createReminder <description of reminder> <dd/mm/yyyy>"';
+const wrongFormatMessage = 'create-reminder format is: "createReminder <dd/mm/yyyy> <description of reminder>"';
+
+const convertMessageStringToModel = messageArray => {
+    try {
+        let date = convertDateStringToDateObject(messageArray[1], '/');
+        let description = '';
+
+        for (let i = 2; i < messageArray.length; i++) {
+            let space = messageArray.length - 1 === i ? '' : ' ';
+            description += messageArray[i] + space;
+        }
+
+        return { description, date }
+    } catch(ex) {
+        return null
+    }
+}
 
 export const createReminder = async message => {
-    const { content, author : {id} } = message;
-    const [, description, date] = content.split(' ');
-
-    if (!description || !date || !isDateValid(date)) {
+    let { content, author : {id} } = message;
+    let input = convertMessageStringToModel(content.split(' '));
+    
+    if (!input) {
         message.author.send(wrongFormatMessage);
         return;
     }
-
-    const result = await handleCreateReminder({ 
-        discordId: id,
-        date: convertDateStringToDateObject(date, '/'),
-        description,
-    });
-
+    
+    input.discordId = id;
+    let result = await handleCreateReminder(input);
     message.author.send(result.message);
 }
